@@ -1,0 +1,9 @@
+{% if latest_need_list %}
+    <ul>
+    {% for need in latest_need_list %}
+        <li><a href="/{{ need.id }}/">{{ need.what }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No needs are available.</p>
+{% endif %}
