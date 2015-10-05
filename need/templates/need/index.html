@@ -1,9 +1,51 @@
-{% if latest_need_list %}
-    <ul>
-    {% for need in latest_need_list %}
-        <li><a href="/{{ need.id }}/">{{ need.what }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No needs are available.</p>
-{% endif %}
+{% extends 'need/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="row">
+  <div class="col-xs-12 col-md-1">
+    
+  </div>
+  <div class="col-xs-12 col-md-5">
+  
+    {% if latest_need_list %}
+		{% for need in latest_need_list %}
+			{% if need.done %}
+		    <div class="alert alert-success alert-dismissible" role="alert">
+		    {% else %}
+		    <div class="alert alert-info alert-dismissible" role="alert">
+		    {% endif %}
+		    	<div class="row">
+					<div class="col-xs-8 col-md-8">
+						<p>
+							{{ need.amount }} <a href="{% url 'need:detail' need.id %}">{{ need.what }}</a> {% trans "at" %} {{ need.where }}
+						</p>
+						<p>
+							{{ need.pub_date }}
+						</p>					
+					</div>
+					<div class="col-xs-4 col-md-4">
+						<p class="text-center">
+							{% if need.done %}
+							<span class="glyphicon glyphicon-check"></span> {% trans "done" %}
+							{% else %}
+							<a class="btn btn-success" href="{% url 'need:done' pk=need.pk  %}">{% trans "Got it!" %}</a>
+							{% endif %}
+						</p>
+					</div>	
+				</div>
+			</div>
+		{% endfor %}
+	{% else %}
+		<p>{% trans "No needs are available." %}</p>
+	{% endif %}
+  </div>
+  
+  <div class="col-xs-12 col-md-5">
+    
+  </div>
+  <div class="col-xs-12 col-md-1">
+    
+  </div>
+</div>
+{% endblock content %}
