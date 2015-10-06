@@ -27,9 +27,9 @@
 							{% endif %}
 							<br>						
 							{% if LANGUAGE_BIDI %}
-								{{ need.where }}={% trans "where" %}
+								{{ need.get_where_display }}={% trans "where" %}
 							{% else %}
-								{% trans "where" %}={{ need.where }}
+								{% trans "where" %}={{ need.get_where_display }}
 							{% endif %}
 							<br>
 							{{ need.pub_date }}

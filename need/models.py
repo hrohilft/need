@@ -5,9 +5,9 @@ from django.utils import timezone
 class Need(models.Model):
 	what = models.CharField(max_length=200)
 	amount = models.PositiveSmallIntegerField(default=1)
-	where = models.CharField(max_length=200)
-	#PLACES = (('HWBR', 'HWBR'), ('Emporhalle', 'Emporhalle'), ('Physik', 'Physik'),)
-	#place = models.CharField(max_length=1, choices=PLACES, default='HWBR')
+#	where = models.CharField(max_length=200)
+	PLACES = (('H', 'HWBR'), ('E', 'Emporhalle'), ('P', 'Physik'),)
+	where = models.CharField(max_length=1, choices=PLACES, default='H')
 	pub_date = models.DateTimeField('date published')
 	done = models.BooleanField(default=False)
 	

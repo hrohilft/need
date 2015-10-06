@@ -17,30 +17,35 @@
 				<input id="id_what" maxlength="200" name="what" type="text" class="form-control" placeholder="{% trans "what" %}" required autofocus>
 								
 				<label for="id_amount" class="sr-only">{% trans "amount" %}</label>
-				<input id="id_amount" name="amount" type="number" value="1" class="form-control" placeholder="{% trans "amount" %}" required>	
+				<input id="id_amount" name="amount" type="number" value="1" min="1" class="form-control" placeholder="{% trans "amount" %}" required>	
 				
 				<label for="id_where" class="sr-only">{% trans "where" %}</label>
-				<input id="id_where" maxlength="200" name="where" type="text" class="form-control" placeholder="{% trans "where" %}" required>
+				<select id="id_where" name="where" class="form-control">
+					<option value="H" selected="selected">HWBR</option>
+					<option value="E">Emporhalle</option>
+					<option value="P">Physik</option>
+				</select>				
+				
+				<p></p>
 				
 				<button class="btn btn-lg btn-primary btn-block" type="submit">{% trans "Add" %}</button>
 				<input type="hidden" name="next" value="{{ next }}" />
 				
 				<p></p>
+				
 				<div class="alert alert-info alert-dismissible" role="alert">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					"{% trans "what" %}" {% trans "no more than 200 characters." %} 
 				</div>
 					
-				{% if form.errors %}
+				{% if error_message %}
 				<div class="alert alert-warning alert-dismissible" role="alert">
 				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				  {{ form.errors }}
+				  {{ error_message }}
 				</div>
 				{% endif %}
-			</form>
-	  
-		</div>  
-		
+			</form>	  
+		</div>		
 	</div>
   
 	<div class="col-xs-12 col-md-1">

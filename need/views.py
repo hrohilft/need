@@ -25,13 +25,16 @@ def detail(request, pk):
 	
 def new(request):
 	if request.method == "POST":
+		print(request)
 		form = NeedForm(request.POST)
 		if form.is_valid():
+			print("valid")
 			need = form.save(commit=False)
 			need.pub_date = timezone.now()
 			need.save()
 			return HttpResponseRedirect(reverse('need:index'))
 		else:
+			print("not valid")
 			form = NeedForm()
 			# Translators: This error message appears on the new need form page
 			return render(request, 'need/new.html', {'error_message': _("wrong input"), 'form': form})

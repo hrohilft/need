@@ -18,9 +18,9 @@
 			<p>{% trans "amount" %} = {{ need.amount }}</p>
 			{% get_current_language_bidi as LANGUAGE_BIDI %}
 			{% if LANGUAGE_BIDI %}
-			<p>{{ need.where }} = {% trans "where" %}</p>
+			<p>{{ need.get_where_display }} = {% trans "where" %}</p>
 			{% else %}
-			<p>{% trans "where" %} = {{ need.where }}</p>
+			<p>{% trans "where" %} = {{ need.get_where_display }}</p>
 			{% endif %}
 			<p>{{ need.pub_date }}</p>
 			
