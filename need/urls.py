@@ -7,5 +7,5 @@ urlpatterns = [
 	url(r'^(?P<pk>[0-9]+)/$', views.detail, name='detail'),
 	url(r'^new/$', views.new, name='new'),
 	url(r'^(?P<pk>[0-9]+)/done$', views.done, name='done'),
-
+	url(r'^langchoice$', views.langchoice, name='langchoice'),
 ]

@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.utils import timezone
 from django.utils.translation import ugettext as _
+from django.utils.translation import get_language, get_language_info
 
 from .models import Need
 from .forms import NeedForm
@@ -41,3 +42,11 @@ def done(request, pk):
 	need.done = True
 	need.save()
 	return HttpResponseRedirect(reverse('need:index'))
+	
+def langchoice(request):
+	ar = get_language_info('ar')
+	fa = get_language_info('fa')
+	de = get_language_info('de')
+	en = get_language_info('en')
+	languages = [ar, fa, de, en]
+	return render(request, 'need/langchoice.html', {'languages': languages})

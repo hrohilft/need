@@ -3,13 +3,14 @@
 
 {% block content %}
 <div class="row">
-  <div class="col-xs-12 col-md-1">
+  <div class="col-xs-12 col-md-3">
     
   </div>
-  <div class="col-xs-12 col-md-5">
+  <div class="col-xs-12 col-md-6">
   
     {% if latest_need_list %}
 		{% for need in latest_need_list %}
+			<a href="{% url 'need:detail' need.id %}">
 			{% if need.done %}
 		    <div class="alert alert-success alert-dismissible" role="alert">
 		    {% else %}
@@ -17,34 +18,40 @@
 		    {% endif %}
 		    	<div class="row">
 					<div class="col-xs-8 col-md-8">
-						<p>
-							{{ need.amount }} <a href="{% url 'need:detail' need.id %}">{{ need.what }}</a> {% trans "at" %} {{ need.where }}
-						</p>
-						<p>
-							{{ need.pub_date }}
-						</p>					
+						{% get_current_language_bidi as LANGUAGE_BIDI %}
+						{% if LANGUAGE_BIDI %}
+							({% trans "amount" %}={{ need.amount }}) {{ need.what }} 
+						{% else %}
+							{{ need.what }} ({% trans "amount" %}={{ need.amount }})
+						{% endif %}
+						<br>						
+						{% if LANGUAGE_BIDI %}
+							{{ need.where }}={% trans "where" %}
+						{% else %}
+							{% trans "where" %}={{ need.where }}
+						{% endif %}
+						<br>
+						{{ need.pub_date }}
 					</div>
 					<div class="col-xs-4 col-md-4">
 						<p class="text-center">
 							{% if need.done %}
 							<span class="glyphicon glyphicon-check"></span> {% trans "done" %}
 							{% else %}
-							<a class="btn btn-success" href="{% url 'need:done' pk=need.pk  %}">{% trans "Got it!" %}</a>
+							
 							{% endif %}
 						</p>
 					</div>	
 				</div>
 			</div>
+			</a>
 		{% endfor %}
 	{% else %}
 		<p>{% trans "No needs are available." %}</p>
 	{% endif %}
   </div>
   
-  <div class="col-xs-12 col-md-5">
-    
-  </div>
-  <div class="col-xs-12 col-md-1">
+  <div class="col-xs-12 col-md-3">
     
   </div>
 </div>

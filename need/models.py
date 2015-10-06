@@ -6,6 +6,8 @@ class Need(models.Model):
 	what = models.CharField(max_length=200)
 	amount = models.IntegerField(default=1)
 	where = models.CharField(max_length=200)
+	#PLACES = (('HWBR', 'HWBR'), ('Emporhalle', 'Emporhalle'), ('Physik', 'Physik'),)
+	#place = models.CharField(max_length=1, choices=PLACES, default='HWBR')
 	pub_date = models.DateTimeField('date published')
 	done = models.BooleanField(default=False)
 	
@@ -14,3 +16,5 @@ class Need(models.Model):
 
 	def was_published_recently(self):
 		return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+
+

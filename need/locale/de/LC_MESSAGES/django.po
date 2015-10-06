@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-04 22:59+0200\n"
+"POT-Creation-Date: 2015-10-05 21:56+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,30 +23,34 @@ msgid "Add a need"
 msgstr "Einen Bedarf hinzufügen"
 
 #: templates/need/base.html:36
-msgid "Home"
-msgstr "Hauptseite"
+msgid "List"
+msgstr "Liste"
 
-#: templates/need/base.html:37
+#: templates/need/base.html:40
 msgid "About"
 msgstr "Über"
 
-#: templates/need/base.html:38
-msgid "Contact"
-msgstr "Kontakt"
-
 #: templates/need/index.html:21
-msgid "at"
-msgstr "Ort:"
+msgid "what"
+msgstr "was"
 
-#: templates/need/index.html:30
+#: templates/need/index.html:23 templates/need/index.html.py:24
+msgid "amount"
+msgstr "Menge"
+
+#: templates/need/index.html:28 templates/need/index.html.py:30
+msgid "where"
+msgstr "wo"
+
+#: templates/need/index.html:38
 msgid "done"
 msgstr "fertig"
 
-#: templates/need/index.html:32
-msgid "Got it!"
-msgstr "Erhalten"
-
 #: templates/need/index.html:40
+msgid "Got it!"
+msgstr "Abhaken"
+
+#: templates/need/index.html:48
 msgid "No needs are available."
 msgstr "Kein Bedarf verfügbar."
 
@@ -59,9 +63,21 @@ msgid "Add"
 msgstr "Hinzufügen"
 
 #. Translators: This error message appears on the new need form page
-#: views.py:35
+#: views.py:36
 msgid "wrong input"
 msgstr "Falsche Eingabe"
+
+#~ msgid "at"
+#~ msgstr "Ort"
+
+#~ msgid "Contact"
+#~ msgstr "Kontakt"
+
+#~ msgid "Language"
+#~ msgstr "Sprache"
+
+#~ msgid "Home"
+#~ msgstr "Hauptseite"
 
 #~ msgid "Hello"
 #~ msgstr "Hallo"
