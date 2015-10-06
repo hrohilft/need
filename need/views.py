@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from django.utils import timezone
 from django.utils.translation import ugettext as _
 from django.utils.translation import get_language, get_language_info
+from django.contrib.auth.decorators import login_required
 
 from .models import Need
 from .forms import NeedForm
@@ -42,6 +43,12 @@ def done(request, pk):
 	need.done = True
 	need.save()
 	return HttpResponseRedirect(reverse('need:index'))
+
+@login_required	
+def delete(request, pk):
+	need = get_object_or_404(Need, pk=pk)
+	need.delete()
+	return HttpResponseRedirect(reverse('need:index'))
 	
 def langchoice(request):
 	ar = get_language_info('ar')
@@ -50,3 +57,6 @@ def langchoice(request):
 	en = get_language_info('en')
 	languages = [ar, fa, de, en]
 	return render(request, 'need/langchoice.html', {'languages': languages})
+	
+def about(request):
+	return render(request, 'need/about.html', {})

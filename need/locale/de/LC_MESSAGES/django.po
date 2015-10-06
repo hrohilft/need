@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-05 21:56+0200\n"
+"POT-Creation-Date: 2015-10-06 13:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/need/about.html:6
+msgid ""
+"\n"
+"This is just a tiny tool. Maybe it can help.\n"
+msgstr ""
+"\n"
+"Dies ist nur ein kleines Werkzeug. Vielleicht kann es helfen.\n"
 
 #: templates/need/base.html:32
 msgid "Add a need"
@@ -30,40 +38,65 @@ msgstr "Liste"
 msgid "About"
 msgstr "Über"
 
-#: templates/need/index.html:21
-msgid "what"
-msgstr "was"
+#: templates/need/detail.html:13
+msgid "status"
+msgstr "Zustand"
 
-#: templates/need/index.html:23 templates/need/index.html.py:24
-msgid "amount"
-msgstr "Menge"
-
-#: templates/need/index.html:28 templates/need/index.html.py:30
-msgid "where"
-msgstr "wo"
-
-#: templates/need/index.html:38
+#: templates/need/detail.html:13 templates/need/index.html:41
 msgid "done"
 msgstr "fertig"
 
-#: templates/need/index.html:40
+#: templates/need/detail.html:15
 msgid "Got it!"
 msgstr "Abhaken"
 
-#: templates/need/index.html:48
+#: templates/need/detail.html:18 templates/need/index.html:24
+#: templates/need/index.html.py:26 templates/need/new.html:19
+#: templates/need/new.html.py:20
+msgid "amount"
+msgstr "Menge"
+
+#: templates/need/detail.html:21 templates/need/detail.html.py:23
+#: templates/need/index.html:30 templates/need/index.html.py:32
+#: templates/need/new.html:22 templates/need/new.html.py:23
+msgid "where"
+msgstr "wo"
+
+#: templates/need/detail.html:32 templates/need/index.html:50
+msgid "Are you sure?"
+msgstr ""
+
+#: templates/need/detail.html:34 templates/need/index.html:52
+msgid "Yes"
+msgstr "Ja"
+
+#: templates/need/detail.html:36 templates/need/index.html:54
+msgid "No"
+msgstr "Nein"
+
+#: templates/need/index.html:68
 msgid "No needs are available."
 msgstr "Kein Bedarf verfügbar."
 
-#: templates/need/new.html:11
+#: templates/need/new.html:14
 msgid "New need"
 msgstr "Neuer Bedarf"
 
-#: templates/need/new.html:17
+#: templates/need/new.html:16 templates/need/new.html.py:17
+#: templates/need/new.html:31
+msgid "what"
+msgstr "was"
+
+#: templates/need/new.html:25
 msgid "Add"
 msgstr "Hinzufügen"
 
+#: templates/need/new.html:31
+msgid "no more than 200 characters."
+msgstr "nicht mehr als 200 Zeichen."
+
 #. Translators: This error message appears on the new need form page
-#: views.py:36
+#: views.py:37
 msgid "wrong input"
 msgstr "Falsche Eingabe"
 

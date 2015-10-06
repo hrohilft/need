@@ -10,41 +10,59 @@
   
     {% if latest_need_list %}
 		{% for need in latest_need_list %}
-			<a href="{% url 'need:detail' need.id %}">
+			
 			{% if need.done %}
 		    <div class="alert alert-success alert-dismissible" role="alert">
 		    {% else %}
 		    <div class="alert alert-info alert-dismissible" role="alert">
 		    {% endif %}
 		    	<div class="row">
-					<div class="col-xs-8 col-md-8">
-						{% get_current_language_bidi as LANGUAGE_BIDI %}
-						{% if LANGUAGE_BIDI %}
-							({% trans "amount" %}={{ need.amount }}) {{ need.what }} 
-						{% else %}
-							{{ need.what }} ({% trans "amount" %}={{ need.amount }})
-						{% endif %}
-						<br>						
-						{% if LANGUAGE_BIDI %}
-							{{ need.where }}={% trans "where" %}
-						{% else %}
-							{% trans "where" %}={{ need.where }}
-						{% endif %}
-						<br>
-						{{ need.pub_date }}
-					</div>
-					<div class="col-xs-4 col-md-4">
-						<p class="text-center">
-							{% if need.done %}
-							<span class="glyphicon glyphicon-check"></span> {% trans "done" %}
+		    		<a href="{% url 'need:detail' need.id %}">
+						<div class="col-xs-8 col-md-8">
+							{% get_current_language_bidi as LANGUAGE_BIDI %}
+							{% if LANGUAGE_BIDI %}
+								({% trans "amount" %}={{ need.amount }}) {{ need.what }} 
 							{% else %}
-							
+								{{ need.what }} ({% trans "amount" %}={{ need.amount }})
 							{% endif %}
-						</p>
+							<br>						
+							{% if LANGUAGE_BIDI %}
+								{{ need.where }}={% trans "where" %}
+							{% else %}
+								{% trans "where" %}={{ need.where }}
+							{% endif %}
+							<br>
+							{{ need.pub_date }}
+						</div>
+					</a>
+					<div class="col-xs-4 col-md-4">
+						<div class="text-center">
+							{% if need.done %}
+							<p><span class="glyphicon glyphicon-check"></span> {% trans "done" %}</p>							
+							{% else %}
+
+							{% endif %}
+							{% if user.is_superuser %}
+							<!-- Single button -->
+							<div class="btn-group text-center">
+								<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-trash"></span></button>
+								<ul class="dropdown-menu" role="menu">
+									<li class="dropdown-header">{% trans "Are you sure?" %}</li>
+									<li class="divider"></li>
+									<li><a href="{% url 'need:delete' pk=need.pk %}">{% trans "Yes" %}</a></li>
+									<li class="divider"></li>
+									<li><a href="#">{% trans "No" %}</a></li>
+									<li class="divider"></li>
+								</ul>
+							</div>
+							{% else %}
+						
+							{% endif %}
+						</div>						
 					</div>	
 				</div>
 			</div>
-			</a>
+			
 		{% endfor %}
 	{% else %}
 		<p>{% trans "No needs are available." %}</p>

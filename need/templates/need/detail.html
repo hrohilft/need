@@ -23,6 +23,24 @@
 			<p>{% trans "where" %} = {{ need.where }}</p>
 			{% endif %}
 			<p>{{ need.pub_date }}</p>
+			
+			{% if user.is_superuser %}
+			<!-- Single button -->
+			<div class="btn-group text-center">
+				<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-trash"></span></button>
+				<ul class="dropdown-menu" role="menu">
+					<li class="dropdown-header">{% trans "Are you sure?" %}</li>
+					<li class="divider"></li>
+					<li><a href="{% url 'need:delete' pk=need.pk %}">{% trans "Yes" %}</a></li>
+					<li class="divider"></li>
+					<li><a href="#">{% trans "No" %}</a></li>
+					<li class="divider"></li>
+				</ul>
+			</div>
+			{% else %}
+		
+			{% endif %}
+			
 		</div>		
 	</div>
 	<div class="col-xs-12 col-md-3">
