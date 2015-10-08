@@ -55,10 +55,10 @@ def delete(request, pk):
 	
 def langchoice(request):
 	ar = get_language_info('ar')
-	fa = get_language_info('fa')
+	#fa = get_language_info('fa')
 	de = get_language_info('de')
 	en = get_language_info('en')
-	languages = [ar, fa, de, en]
+	languages = [ar, de, en] #fa,
 	return render(request, 'need/langchoice.html', {'languages': languages})
 	
 def about(request):
