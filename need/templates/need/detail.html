@@ -9,38 +9,58 @@
 	</div>
 	<div class="col-xs-12 col-md-6">
   		<div class="well">
+  			<div class="date">{{ need.pub_date }}</div>
 			{% if need.done %}
-			<p>{% trans "status" %} = {% trans "done" %}</p>
+				<p>{% trans "status" %} = {% trans "done" %}</p>
 			{% else %}
-			<p><a class="btn btn-success" href="{% url 'need:done' pk=need.pk  %}">{% trans "Got it!" %}</a></p>
+				<p><a class="btn btn-success" href="{% url 'need:done' pk=need.pk  %}">{% trans "Got it!" %}</a></p>
 			{% endif %}		
 			<p>{{ need.what }}</p>
 			<p>{% trans "amount" %} = {{ need.amount }}</p>
 			{% get_current_language_bidi as LANGUAGE_BIDI %}
 			{% if LANGUAGE_BIDI %}
-			<p>{{ need.get_where_display }} = {% trans "where" %}</p>
+				<p>{{ need.get_where_display }} = {% trans "where" %}</p>
 			{% else %}
-			<p>{% trans "where" %} = {{ need.get_where_display }}</p>
+				<p>{% trans "where" %} = {{ need.get_where_display }}</p>
 			{% endif %}
-			<p>{{ need.pub_date }}</p>
+			
 			
 			{% if user.is_superuser %}
-			<!-- Single button -->
-			<div class="btn-group text-center">
-				<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-trash"></span></button>
-				<ul class="dropdown-menu" role="menu">
-					<li class="dropdown-header">{% trans "Are you sure?" %}</li>
-					<li class="divider"></li>
-					<li><a href="{% url 'need:delete' pk=need.pk %}">{% trans "Yes" %}</a></li>
-					<li class="divider"></li>
-					<li><a href="#">{% trans "No" %}</a></li>
-					<li class="divider"></li>
-				</ul>
-			</div>
+				<!-- Single button -->
+				<div class="btn-group text-center">
+					<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-trash"></span></button>
+					<ul class="dropdown-menu" role="menu">
+						<li class="dropdown-header">{% trans "Are you sure?" %}</li>
+						<li class="divider"></li>
+						<li><a href="{% url 'need:delete' pk=need.pk %}">{% trans "Yes" %}</a></li>
+						<li class="divider"></li>
+						<li><a href="#">{% trans "No" %}</a></li>
+						<li class="divider"></li>
+					</ul>
+				</div>
 			{% else %}
 		
 			{% endif %}
-			
+			<hr>
+			<a class="btn btn-info" href="{% url 'need:add_transl' pk=need.pk %}">{% trans "Add translation" %}</a>
+			{% for transl in need.transl.all %}
+				{% if transl.public %}
+					<div class="transl">
+						<div class="date">{{ transl.created_date }}</div>
+						{% if user.is_superuser %}
+							<a class="btn btn-warning" href="{% url 'need:remove_transl' pk=transl.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+						{% else %}
+
+						{% endif %}
+						<strong>#{{ transl.id }}</strong>
+						<p>{{ transl.text|linebreaks }}</p>						
+					</div>
+				{% else %}
+				
+				{% endif %}
+			{% empty %}
+				<p>{% trans "No translations available yet." %}</p>
+			{% endfor %}
 		</div>		
 	</div>
 	<div class="col-xs-12 col-md-3">

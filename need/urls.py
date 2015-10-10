@@ -10,4 +10,6 @@ urlpatterns = [
 	url(r'^(?P<pk>[0-9]+)/delete$', views.delete, name='delete'),
 	url(r'^langchoice$', views.langchoice, name='langchoice'),
 	url(r'^about/$', views.about, name='about'),
+	url(r'^need/(?P<pk>[0-9]+)/transl/$', views.add_transl, name='add_transl'),
+	url(r'^need/(?P<pk>[0-9]+)/transl/remove$', views.remove_transl, name='remove_transl'),
 ]

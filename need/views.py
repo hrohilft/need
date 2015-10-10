@@ -7,8 +7,8 @@ from django.utils.translation import ugettext as _
 from django.utils.translation import get_language, get_language_info
 from django.contrib.auth.decorators import login_required
 
-from .models import Need
-from .forms import NeedForm
+from .models import Need, Transl
+from .forms import NeedForm, TranslForm
 
 def index(request):
     latest_need_list = Need.objects.order_by('-pub_date')[:50]
@@ -63,3 +63,27 @@ def langchoice(request):
 	
 def about(request):
 	return render(request, 'need/about.html', {})
+	
+def add_transl(request, pk):
+    need = get_object_or_404(Need, pk=pk)
+    if request.method == "POST":
+        form = TranslForm(request.POST)
+        if form.is_valid():
+            transl = form.save(commit=False)
+            transl.need = need
+            transl.publish()
+            transl.save()
+            return redirect('need:detail', pk=need.pk)
+    else:
+        form = TranslForm()
+    return render(request, 'need/add_transl.html', {'form': form, 'need': need})
+
+@login_required	
+def remove_transl(request, pk):
+	transl = get_object_or_404(Transl, pk=pk)
+	transl.hide()
+	return redirect('need:detail', pk=transl.need.pk)
+
+
+
+
