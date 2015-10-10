@@ -54,17 +54,18 @@ def delete(request, pk):
 	return HttpResponseRedirect(reverse('need:index'))
 	
 def langchoice(request):
+	referer = request.META["HTTP_REFERER"]
 	ar = get_language_info('ar')
 	#fa = get_language_info('fa')
 	de = get_language_info('de')
 	en = get_language_info('en')
 	languages = [ar, de, en] #fa,
-	return render(request, 'need/langchoice.html', {'languages': languages})
+	return render(request, 'need/langchoice.html', {'languages': languages, 'referer': referer})
 	
 def about(request):
 	return render(request, 'need/about.html', {})
 	
-def add_transl(request, pk):
+def add_transl(request, pk):	
     need = get_object_or_404(Need, pk=pk)
     if request.method == "POST":
         form = TranslForm(request.POST)

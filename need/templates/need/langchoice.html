@@ -4,7 +4,7 @@
 {% block content %}
 
 <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
-    <input name="next" type="hidden" value="/" />
+    <input name="next" type="hidden" value="{{ referer }}" />
     <select name="language">
         {% get_current_language as LANGUAGE_CODE %}
         {% for language in languages %}

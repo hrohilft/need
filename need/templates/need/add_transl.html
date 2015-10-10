@@ -2,32 +2,44 @@
 {% load i18n %}
 
 {% block content %}
-<div class="well">
-	<div class="date">{{ need.pub_date }}</div>
-	{% if need.done %}
-		<p>{% trans "status" %} = {% trans "done" %}</p>
-	{% else %}
-		<p><a class="btn btn-success" href="{% url 'need:done' pk=need.pk  %}">{% trans "Got it!" %}</a></p>
-	{% endif %}	
-	{% get_current_language_bidi as LANGUAGE_BIDI %}
-	{% if LANGUAGE_BIDI %}
-		<p>{{ need.what }} = {% trans "what" %}</p>
-		<p>{{ need.amount }} = {% trans "amount" %}</p>
-		<p>{{ need.get_where_display }} = {% trans "where" %}</p>
-	{% else %}
-		<p>{% trans "what" %} = {{ need.what }}</p>
-		<p>{% trans "amount" %} = {{ need.amount }}</p>
-		<p>{% trans "where" %} = {{ need.get_where_display }}</p>
-	{% endif %}
+<div class="row">
+	<div class="col-xs-12 col-md-3">
+
+	</div>
+	<div class="col-xs-12 col-md-6">
+
+		<div class="well">
+			<div class="date">{{ need.pub_date }}</div>
+			{% if need.done %}
+				<p>{% trans "status" %} = {% trans "done" %}</p>
+			{% else %}
+				<p><a class="btn btn-success" href="{% url 'need:done' pk=need.pk  %}">{% trans "Got it!" %}</a></p>
+			{% endif %}	
+			{% get_current_language_bidi as LANGUAGE_BIDI %}
+			{% if LANGUAGE_BIDI %}
+				<p>{{ need.what }} = {% trans "what" %}</p>
+				<p>{{ need.amount }} = {% trans "amount" %}</p>
+				<p>{{ need.get_where_display }} = {% trans "where" %}</p>
+			{% else %}
+				<p>{% trans "what" %} = {{ need.what }}</p>
+				<p>{% trans "amount" %} = {{ need.amount }}</p>
+				<p>{% trans "where" %} = {{ need.get_where_display }}</p>
+			{% endif %}
+		</div>
+		
+		<h3>{% trans "translate" %}</h3>
+	
+		<form method="POST" class="post-form">{% csrf_token %}
+			<p>
+				<label for="id_text" class="sr-only">{% trans "what" %}:</label>
+				<input id="id_text" maxlength="200" name="text" type="text" class="form-control" placeholder="{% trans "what" %}" required autofocus />
+			</p>
+			<button type="submit" class="save btn btn-default">{% trans "Save" %}</button>
+		</form>
+	
+	</div>
+	<div class="col-xs-12 col-md-3">
+
+	</div>
 </div>
-    <h3>{% trans "translate" %}</h3>
-    
-    <form method="POST" class="post-form">{% csrf_token %}
-        <p>
-		    <label for="id_text" class="sr-only">{% trans "what" %}:</label>
-		    <input id="id_text" maxlength="200" name="text" type="text" class="form-control" placeholder="{% trans "what" %}" required autofocus />
-        </p>
-        <button type="submit" class="save btn btn-default">{% trans "Save" %}</button>
-    </form>
-    
 {% endblock %}
