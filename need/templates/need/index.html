@@ -20,23 +20,20 @@
 						<div class="col-xs-8 col-md-8">
 							{% get_current_language_bidi as LANGUAGE_BIDI %}
 							{% if LANGUAGE_BIDI %}
-								({% trans "amount" %}={{ need.amount }}) {{ need.what }} 
-							{% else %}
-								{{ need.what }} ({% trans "amount" %}={{ need.amount }})
-							{% endif %}
-							<br>						
-							{% if LANGUAGE_BIDI %}
+								({{ need.amount }}={% trans "amount" %}) {{ need.what }}
+								<br>
 								{{ need.get_where_display }}={% trans "where" %}
-							{% else %}
-								{% trans "where" %}={{ need.get_where_display }}
-							{% endif %}
-							<br>
-							{{ need.pub_date }}
-							<br>
-							{% if LANGUAGE_BIDI %}
-							need.public_transl.count
+								<br>
+								{{ need.pub_date }}
+								<br>
 								{{ need.public_transl.count }}={% trans "Translations" %}
 							{% else %}
+								{{ need.what }} ({% trans "amount" %}={{ need.amount }})
+								<br>
+								{% trans "where" %}={{ need.get_where_display }}
+								<br>
+								{{ need.pub_date }}
+								<br>
 								{% trans "Translations" %}={{ need.public_transl.count }}
 							{% endif %}
 						</div>

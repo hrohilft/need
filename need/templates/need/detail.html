@@ -14,16 +14,18 @@
 				<p>{% trans "status" %} = {% trans "done" %}</p>
 			{% else %}
 				<p><a class="btn btn-success" href="{% url 'need:done' pk=need.pk  %}">{% trans "Got it!" %}</a></p>
-			{% endif %}		
-			<p>{{ need.what }}</p>
-			<p>{% trans "amount" %} = {{ need.amount }}</p>
-			{% get_current_language_bidi as LANGUAGE_BIDI %}
-			{% if LANGUAGE_BIDI %}
-				<p>{{ need.get_where_display }} = {% trans "where" %}</p>
-			{% else %}
-				<p>{% trans "where" %} = {{ need.get_where_display }}</p>
 			{% endif %}
 			
+			{% get_current_language_bidi as LANGUAGE_BIDI %}
+			{% if LANGUAGE_BIDI %}
+				<p>{{ need.what }} = {% trans "what" %}</p>
+				<p>{{ need.amount }} = {% trans "amount" %}</p>
+				<p>{{ need.get_where_display }} = {% trans "where" %}</p>
+			{% else %}
+				<p>{% trans "what" %} = {{ need.what }}</p>
+				<p>{% trans "amount" %} = {{ need.amount }}</p>
+				<p>{% trans "where" %} = {{ need.get_where_display }}</p>
+			{% endif %}
 			
 			{% if user.is_superuser %}
 				<!-- Single button -->
